@@ -10,7 +10,7 @@ public class MergeSort {
 	public static void main(String[] args) {
 		
 		
-		mergeSort.sort(mergeSort.init(100));
+		mergeSort.sort(mergeSort.init(5));
 		
 	}
 
