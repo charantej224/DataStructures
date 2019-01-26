@@ -1,7 +1,5 @@
 package com.charan.datastructures.lists;
 
-import javax.sound.midi.SysexMessage;
-
 public class LinkedList<T> {
 
     Node<T> headNode;
@@ -9,7 +7,9 @@ public class LinkedList<T> {
     int counter;
 
 
-    public void add(Node<T> node){
+    public void add(T t){
+        Node<T> node = new Node<T>();
+        node.setT(t);
         if(counter == 0){
             headNode = node;
             tailNode = node;
@@ -19,6 +19,32 @@ public class LinkedList<T> {
         }
         counter++;
     }
+
+    public T removeFirst(){
+        if(headNode == null){
+            throw new IllegalStateException();
+        }
+        Node<T> temp = headNode;
+        headNode = headNode.getNode();
+        return temp.getT();
+    }
+
+    public Node<T> addFirst(T t){
+        Node<T> temp = headNode;
+        Node<T> node = new Node<T>();
+        node.setT(t);
+        headNode = node;
+        headNode.setNode(temp);
+        return temp;
+    }
+
+    public T getFirstNode(){
+        if(headNode == null){
+            throw new IllegalStateException();
+        }
+        return headNode.getT();
+    }
+
 
     @Override
     public String toString(){
