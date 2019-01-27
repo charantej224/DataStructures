@@ -1,6 +1,6 @@
 package com.charan.datastructures.lists;
 
-public class LinkedList<T> {
+public class LinkedList<T extends Comparable> {
 
     Node<T> headNode;
     Node<T> tailNode;
@@ -44,6 +44,30 @@ public class LinkedList<T> {
         }
         return headNode.getT();
     }
+
+    public void priortyPush(T t){
+        if(null == headNode){
+            add(t);
+            return;
+        }
+        Node<T> node = new Node<T>();
+        node.setT(t);
+        Node<T> tempNode = headNode;
+        if(headNode.getT().compareTo(t) < 0){
+            node.setNode(headNode);
+            headNode = node;
+            return;
+        }
+        boolean flag = true;
+        while(flag){
+            if(null == tempNode.getNode() || tempNode.getNode().getT().compareTo(t) < 0 ){
+                node.setNode(tempNode.getNode());
+                tempNode.setNode(node);
+                flag = false;
+            } else tempNode = tempNode.getNode();
+        }
+    }
+
 
 
     @Override

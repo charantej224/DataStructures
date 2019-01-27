@@ -2,7 +2,7 @@ package com.charan.datastructures.com.charan.datastructures.pluralsight;
 
 import com.charan.datastructures.lists.LinkedList;
 
-public class Stack<T> {
+public class Stack<T extends Comparable> {
 
     LinkedList<T> linkedList = new LinkedList<T>();
 

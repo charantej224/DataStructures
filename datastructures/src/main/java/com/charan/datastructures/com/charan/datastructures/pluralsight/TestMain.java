@@ -17,6 +17,18 @@ public class TestMain {
         a = stack.pop();
         a = stack.pop();
 
+        ArrayStack arrayStack = new ArrayStack();
+        int i = 0;
+        while(i< 50){
+            arrayStack.push(i);
+            i++;
+        }
+        i = 0;
+        while(i< 50){
+            System.out.println(arrayStack.pop());
+            i++;
+        }
+
 
     }
 
