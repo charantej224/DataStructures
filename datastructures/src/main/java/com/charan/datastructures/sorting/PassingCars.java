@@ -1,6 +1,6 @@
 package com.charan.datastructures.sorting;
 
-public class PassingCards {
+public class PassingCars {
 
     public static void main(String[] args){
         int A[] = {0,1,0,1,1};
