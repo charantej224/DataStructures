@@ -1,5 +1,7 @@
 package com.charan.datastructures.binarytree;
 
+import java.awt.HeadlessException;
+
 public class BinaryTreeTraverser<T extends Comparable> {
 
 	private BinaryTree<T> binaryTree;
@@ -15,17 +17,17 @@ public class BinaryTreeTraverser<T extends Comparable> {
 	public void traverseInOrder() {
 		printInOrder(binaryTree.getHeadNode());
 	}
-	
+
 	public void traversePreOrder() {
 		printPreOrder(binaryTree.getHeadNode());
 	}
-	
+
 	public void traversePostOrder() {
 		printPostOrder(binaryTree.getHeadNode());
 	}
 
 	private void printPostOrder(BinaryNode<T> headNode) {
-		if(headNode == null)
+		if (headNode == null)
 			return;
 		printPostOrder(headNode.getLeftNode());
 		printPostOrder(headNode.getRightNode());
@@ -33,12 +35,12 @@ public class BinaryTreeTraverser<T extends Comparable> {
 	}
 
 	private void printPreOrder(BinaryNode<T> headNode) {
-		if(headNode == null)
+		if (headNode == null)
 			return;
 		System.out.println(headNode.getValue());
 		printPreOrder(headNode.getLeftNode());
 		printPreOrder(headNode.getRightNode());
-		
+
 	}
 
 	private void printInOrder(BinaryNode<T> headNode) {
@@ -50,7 +52,20 @@ public class BinaryTreeTraverser<T extends Comparable> {
 		printInOrder(headNode.getRightNode());
 
 	}
-	
-	
 
+	public boolean search(T value) {
+		BinaryNode<T> binaryNode = binaryTree.getHeadNode();
+		while (true) {
+			if (binaryNode == null) {
+				return false;
+			}
+			if (value.compareTo(binaryNode.getValue()) == 0) {
+				return true;
+			} else if (value.compareTo(binaryNode.getValue()) < 0) {
+				binaryNode = binaryNode.getLeftNode();
+			} else if (value.compareTo(binaryNode.getValue()) > 0) {
+				binaryNode = binaryNode.getRightNode();
+			}
+		}
+	}
 }
