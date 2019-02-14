@@ -1,33 +1,15 @@
 package com.charan.datastructures.binarytree;
 
-import java.util.Random;
-
 public class BInaryTreeMain {
-	
-	private static Random random = new Random();
 
 	public static void main(String[] args) {
-		BinaryTree<Integer> binaryTree = new BinaryTree<Integer>();
+		BinaryTreeSetup binaryTreeSetup = new BinaryTreeSetup();
+		BinaryTree<Integer> binaryTree = binaryTreeSetup.setupDefinedValues();
+		BinaryTree<Integer> binaryTree1 = binaryTreeSetup.setupRandomValues();
+
 		BinaryTreeTraverser<Integer> binaryTreeTraverser = new BinaryTreeTraverser<Integer>();
-		int searchKey = random.nextInt(100);
-//		int i =0;
-//		while(i<10) {
-//			int value = random.nextInt(100);
-//			System.out.println(value);
-//			binaryTree.add(value);
-//			i++;
-//		}
-		binaryTree.add(42);
-		binaryTree.add(10);
-		binaryTree.add(91);
-		binaryTree.add(14);
-		binaryTree.add(78);
-		binaryTree.add(25);
-		binaryTree.add(45);
-		binaryTree.add(17);
-		binaryTree.add(47);
-		binaryTree.add(6);
-		
+		int searchKey = 42;
+
 		binaryTreeTraverser.setBinaryTree(binaryTree);
 		System.out.println("-----------------------");
 		binaryTreeTraverser.traverseInOrder();
@@ -37,14 +19,22 @@ public class BInaryTreeMain {
 		binaryTreeTraverser.traversePostOrder();
 		System.out.println("-----------------------");
 		System.out.println("search key:- " + searchKey);
-		if(binaryTreeTraverser.search(searchKey)) {
+		if (binaryTreeTraverser.search(searchKey)) {
 			System.out.println("search key found!!!");
 		} else {
 			System.out.println("search key not found!!!");
 		}
-		
+
 		BinaryTreeProblems<Integer> binaryTreeProblems = new BinaryTreeProblems<Integer>();
 		System.out.println(binaryTreeProblems.maxDepth(binaryTree.getHeadNode()));
-		
+
+		int ldepth = binaryTreeProblems.maxDepth(binaryTree.getHeadNode().getLeftNode());
+		int rdepth = binaryTreeProblems.maxDepth(binaryTree.getHeadNode().getRightNode());
+		System.out.println(2 + ldepth + rdepth);
+
+		boolean result = binaryTreeProblems.isIdentical(binaryTree.getHeadNode(), binaryTree.getHeadNode());
+		System.out.println(result);
+		result = binaryTreeProblems.isIdentical(binaryTree.getHeadNode(), binaryTree1.getHeadNode());
+		System.out.println(result);
 	}
 }

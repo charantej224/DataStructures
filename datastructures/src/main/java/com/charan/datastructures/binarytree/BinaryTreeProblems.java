@@ -12,21 +12,25 @@ public class BinaryTreeProblems<T extends Comparable> {
 		this.binaryTree = binaryTree;
 	}
 
-	public int maxDepth(BinaryNode<T> node)  
-    { 
-        if (node == null) 
-            return 0; 
-        else 
-        { 
-            /* compute the depth of each subtree */
-            int lDepth = maxDepth(node.getLeftNode()); 
-            int rDepth = maxDepth(node.getRightNode()); 
-   
-            /* use the larger one */
-            if (lDepth > rDepth) 
-                return (lDepth + 1); 
-             else 
-                return (rDepth + 1); 
-        } 
-    } 
+	public int maxDepth(BinaryNode<T> node) {
+		if (node == null)
+			return 0;
+		else {
+			int lDepth = maxDepth(node.getLeftNode());
+			int rDepth = maxDepth(node.getRightNode());
+
+			if (lDepth > rDepth)
+				return (lDepth + 1);
+			else
+				return (rDepth + 1);
+		}
+	}
+
+	public boolean isIdentical(BinaryNode<T> node1, BinaryNode<T> node2) {
+		if (node1 == null && node2 == null) {
+			return true;
+		}
+		return (node1.getValue() == node2.getValue()) && (isIdentical(node1.getLeftNode(), node2.getLeftNode()))
+				&& (isIdentical(node1.getRightNode(), node2.getRightNode()));
+	}
 }
