@@ -5,7 +5,7 @@ public class KnapsackProblem {
 	public static void main(String[] args) {
 		int[] weights = { 10, 20, 30 };
 		int[] values = { 60, 100, 120 };
-		int acceptableLimt = 60;
+		int acceptableLimt = 50;
 		System.out.println(knapsack(weights, values, acceptableLimt));
 	}
 
@@ -16,7 +16,7 @@ public class KnapsackProblem {
 		setupIndex(unitArray,weights,values);
 		while(acceptableLimt > 0) {
 			int index = getMaxIndex(unitArray,positionArray);
-			if(acceptableLimt > weights[index]) {
+			if(acceptableLimt >= weights[index]) {
 				sumValue = sumValue + values[index];
 				acceptableLimt = acceptableLimt - weights[index];
 			} else if (acceptableLimt < weights[index]) {
@@ -36,8 +36,7 @@ public class KnapsackProblem {
 	}
 
 	private static int getMaxIndex(float[] unitArray, int[] positionArray) {
-		// TODO Auto-generated method stub
-		int index = 0;
+		int index = -1;
 		float maxValue = 0;
 		for(int i = 0;i< unitArray.length;i++) {
 			if(unitArray[i] > maxValue && positionArray[i] > -1) {
@@ -45,7 +44,11 @@ public class KnapsackProblem {
 				maxValue = unitArray[i];
 			}
 		}
-		positionArray[index] = -1;
+		if(index >= 0)
+			positionArray[index] = -1;
+		else 
+			throw new IllegalArgumentException("exhasuted list and requesting for more");
+		
 		return index;
 	}
 
