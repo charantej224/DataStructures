@@ -2,9 +2,9 @@ package com.charan.datastructures.lists;
 
 public class LinkedList<T extends Comparable> {
 
-    Node<T> headNode;
-    Node<T> tailNode;
-    int counter;
+    public Node<T> headNode;
+    public Node<T> tailNode;
+    public int counter;
 
 
     public void add(T t){

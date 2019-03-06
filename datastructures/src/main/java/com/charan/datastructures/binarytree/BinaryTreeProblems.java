@@ -33,4 +33,53 @@ public class BinaryTreeProblems<T extends Comparable> {
 		return (node1.getValue() == node2.getValue()) && (isIdentical(node1.getLeftNode(), node2.getLeftNode()))
 				&& (isIdentical(node1.getRightNode(), node2.getRightNode()));
 	}
+
+	public boolean deleteNode(BinaryNode<T> node, T t) {
+		if(node == null) {
+			return false;
+		}
+		
+		if (node.getValue().compareTo(t) == 0) {
+			if (node.getLeftNode() == null && node.getRightNode() == null) {
+				node = null;
+				return true;
+			} else if (node.getLeftNode() == null) {
+				node = node.getRightNode();
+				return true;
+			} else if (node.getRightNode() == null) {
+				node = node.getLeftNode();
+				return true;
+			} else {
+				BinaryNode<T> leftMostNode = getLeftMostNode(node.getRightNode());
+				node.setValue(leftMostNode.getValue());
+				leftMostNode = leftMostNode.getRightNode();
+				return true;
+			}
+		} else {
+			deleteNode(node.getLeftNode(),t);
+			deleteNode(node.getRightNode(),t);
+		}
+		return false;
+
+	}
+
+	public BinaryNode<T> getLeftMostNode(BinaryNode<T> node) {
+		if (node == null) {
+			return node;
+		} else if (node.getLeftNode() == null) {
+			return node;
+		} else {
+			return getLeftMostNode(node.getLeftNode());
+		}
+	}
+
+	public BinaryNode<T> getRightMostNode(BinaryNode<T> node) {
+		if (node == null) {
+			return node;
+		} else if (node.getRightNode() == null) {
+			return node;
+		} else {
+			return getRightMostNode(node.getLeftNode());
+		}
+	}
 }

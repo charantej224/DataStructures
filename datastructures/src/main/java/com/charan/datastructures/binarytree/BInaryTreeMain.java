@@ -24,7 +24,7 @@ public class BInaryTreeMain {
 		} else {
 			System.out.println("search key not found!!!");
 		}
-
+		
 		BinaryTreeProblems<Integer> binaryTreeProblems = new BinaryTreeProblems<Integer>();
 		System.out.println(binaryTreeProblems.maxDepth(binaryTree.getHeadNode()));
 
@@ -36,5 +36,7 @@ public class BInaryTreeMain {
 		System.out.println(result);
 		result = binaryTreeProblems.isIdentical(binaryTree.getHeadNode(), binaryTree1.getHeadNode());
 		System.out.println(result);
+		binaryTreeProblems.deleteNode(binaryTree.getHeadNode(),42);
+		binaryTreeTraverser.traverseInOrder();
 	}
 }
