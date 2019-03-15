@@ -30,7 +30,7 @@ public class DepthFirstTraversalGraph {
 		}
 	}
 
-	public void breadthFirst(Integer vertex) {
+	public void depthFirst(Integer vertex) {
 		boolean[] visitedArray = new boolean[listArray.length];
 		traverse(vertex, visitedArray);
 	}
@@ -39,7 +39,7 @@ public class DepthFirstTraversalGraph {
 		DepthFirstTraversalGraph g = new DepthFirstTraversalGraph(5);
 		//g.input1();
 		g.input2();
-		g.breadthFirst(0);
+		g.depthFirst(0);
 	}
 
 	public void input1() {

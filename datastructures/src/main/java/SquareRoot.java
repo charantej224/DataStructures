@@ -4,7 +4,7 @@
 // you can write to stdout for debugging purposes, e.g.
 // System.out.println("this is a debug message");
 
-class Solution {
+class SquareRoot {
     int max = 0;
     static int max1 = 0;
 
@@ -31,10 +31,10 @@ class Solution {
     }
 
     public static void main(String[] args) {
-        Solution solution = new Solution();
+        SquareRoot squareRootSolution = new SquareRoot();
         //System.out.println(solution.solution(10, 20));
         int[] a = {1000,1001};
-        solution.squareRoot2(a,0);
+        squareRootSolution.squareRoot2(a,0);
         System.out.println(max1);
     }
 
