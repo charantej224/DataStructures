@@ -15,15 +15,15 @@ public class ArraysProblem1 {
     public static void main(String[] args) {
         //rotateArraySolution1(inputArrayForRotation, 3);
         //System.out.println(Arrays.toString(inputArrayForRotation));
+        rotateArraySolution3(inputArrayForRotation, 3);
+        System.out.println("\n" + Arrays.toString(inputArrayForRotation));
 
-        int[] outputArray = rotateArraySolution3(inputArrayForRotation,3);
-        System.out.println(Arrays.toString(outputArray));
     }
 
     /*
-    * solution 1 - working -
-    * O(n * n) - time complexity.
-    * O(1) space complexity
+     * solution 1 - working -
+     * O(n * n) - time complexity.
+     * O(1) space complexity
      */
 
     public static void rotateArraySolution1(int[] inputArray, int numberOfElementsSkip) {
@@ -50,16 +50,16 @@ public class ArraysProblem1 {
      * O(n) - space complexity
      */
 
-    public static int[] rotateArraySolution2(int[] inputArray, int numberOfElementsSkip){
+    public static int[] rotateArraySolution2(int[] inputArray, int numberOfElementsSkip) {
         int[] outputArray = new int[inputArray.length];
         int outputIndex = 0;
-        while (true){
+        while (true) {
             outputArray[outputIndex] = inputArray[numberOfElementsSkip];
             outputIndex++;
             numberOfElementsSkip++;
-            if(numberOfElementsSkip >= inputArray.length)
+            if (numberOfElementsSkip >= inputArray.length)
                 numberOfElementsSkip = 0;
-            if(outputIndex >= inputArray.length)
+            if (outputIndex >= inputArray.length)
                 break;
         }
         return outputArray;
@@ -70,18 +70,26 @@ public class ArraysProblem1 {
      * O(n) - time complexity
      * O(1) - space complexity
      */
-    public static int[] rotateArraySolution3(int[] inputArray,int numberOfElementsSkip){
+    public static int[] rotateArraySolution3(int[] inputArray, int numberOfElementsSkip) {
         MathOperations mathOperations = new MathOperations();
-        int endCounter = mathOperations.greatestCommonFactor(numberOfElementsSkip,inputArray.length);
-        for (int counter = 0;counter < endCounter; counter++){
-            int tempCounter = counter;
-            while (tempCounter + endCounter < inputArray.length){
-                int temp = inputArray[tempCounter];
-                inputArray[tempCounter] = inputArray[tempCounter + endCounter];
-                inputArray[tempCounter + endCounter] = temp;
-                tempCounter += endCounter;
+        int greatestCommonFactor = mathOperations.greatestCommonFactor(numberOfElementsSkip, inputArray.length);
+        for (int counter = 0; counter < greatestCommonFactor; counter++) {
+            int temp = inputArray[counter];
+            int pointer = counter;
+            int holdPreviousPointer = counter;
+            while (true) {
+                pointer = pointer + numberOfElementsSkip;
+                if (pointer >= inputArray.length)
+                    pointer = pointer - inputArray.length;
+                if (counter == pointer)
+                    break;
+                inputArray[holdPreviousPointer] = inputArray[pointer];
+                holdPreviousPointer = pointer;
             }
+            inputArray[holdPreviousPointer] = temp;
         }
         return inputArray;
     }
+
+
 }
