@@ -21,7 +21,7 @@ public class ArraysProblem1 {
     }
 
     /*
-     * solution 1 - working -
+     * solution 1 - rotate one by one in loop
      * O(n * n) - time complexity.
      * O(1) space complexity
      */
@@ -45,7 +45,7 @@ public class ArraysProblem1 {
 
 
     /*
-     * solution 2 - working -
+     * solution 2 - rotate number by using a temporary array.
      * O(n) - time complexity.
      * O(n) - space complexity
      */
@@ -66,7 +66,7 @@ public class ArraysProblem1 {
     }
 
     /*
-     * Solution 3
+     * Solution 3 - Using GCD giving by sets.
      * O(n) - time complexity
      * O(1) - space complexity
      */
