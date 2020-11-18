@@ -8,7 +8,7 @@ public class MergeSort {
     static MergeSort mergeSort = new MergeSort();
 
     public static void main(String[] args) {
-        mergeSort.sort(mergeSort.init(100));
+        mergeSort.sort(mergeSort.init(5));
     }
 
     private void sort(int[] init) {
@@ -40,6 +40,7 @@ public class MergeSort {
     }
 
     private void shuffle(int[] init, int lower, int upper) {
+        System.out.println(lower + " - " + upper);
         int temp = 0;
         for (int i = lower; i <= upper; i++) {
             for (int j = i + 1; j <= upper; j++) {
