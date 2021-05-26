@@ -12,27 +12,19 @@ public class InsertionSort {
     }
 
     private static void insertionSort(int[] inputArray) {
-        for (int i = 1; i < inputArray.length; i++) {
-            boolean swap = false;
-            int saved = 0;
-            for (int j = 0; j <= i - 1; j++) {
-                if (swap) {
-                    int temp = inputArray[j];
-                    inputArray[j] = saved;
-                    saved = temp;
-                    if(j+1 == i){
-                        inputArray[j+1] = saved;
-                    }
-                    continue;
-                }
-                if (inputArray[j] > inputArray[i]) {
-                    swap = true;
-                    saved = inputArray[j + 1];
-                    inputArray[j + 1] = inputArray[j];
-                    inputArray[j] = inputArray[i];
-                    j++;
-                }
+        int n = inputArray.length;
+        for (int i = 1; i < n; ++i) {
+            int key = inputArray[i];
+            int j = i - 1;
+
+            /* Move elements of arr[0..i-1], that are
+               greater than key, to one position ahead
+               of their current position */
+            while (j >= 0 && inputArray[j] > key) {
+                inputArray[j + 1] = inputArray[j];
+                j = j - 1;
             }
+            inputArray[j + 1] = key;
         }
     }
 }
