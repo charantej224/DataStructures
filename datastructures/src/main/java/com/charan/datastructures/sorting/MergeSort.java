@@ -1,5 +1,7 @@
 package com.charan.datastructures.sorting;
 
+//https://www.geeksforgeeks.org/merge-sort/
+
 import java.util.Arrays;
 import java.util.Random;
 
@@ -8,25 +10,9 @@ public class MergeSort {
     static MergeSort mergeSort = new MergeSort();
 
     public static void main(String[] args) {
-        mergeSort.sort(mergeSort.init(5));
-    }
-
-    private void sort(int[] init) {
-
-        auxSort(init, 0, init.length - 1);
-        shuffle(init, 0, init.length - 1);
-        System.out.println(Arrays.toString(init));
-    }
-
-    private void auxSort(int[] init, int low, int high) {
-        int mid = (low + high) / 2;
-        if (low < mid) {
-            auxSort(init, low, mid);
-            shuffle(init, low, mid);
-        } else if (mid < high) {
-            auxSort(init, mid + 1, high);
-            shuffle(init, mid + 1, high);
-        }
+        int[] inputArray = mergeSort.init(10);
+        mergeSort.sort(inputArray, 0, 9);
+        System.out.println(Arrays.toString(inputArray));
     }
 
     private int[] init(int i) {
@@ -39,19 +25,60 @@ public class MergeSort {
         return intArray;
     }
 
-    private void shuffle(int[] init, int lower, int upper) {
-        System.out.println(lower + " - " + upper);
-        int temp = 0;
-        for (int i = lower; i <= upper; i++) {
-            for (int j = i + 1; j <= upper; j++) {
-                if (init[i] > init[j]) {
-                    temp = init[j];
-                    init[j] = init[i];
-                    init[i] = temp;
+    public void sort(int inputArray[], int leftValue, int rightValue) {
+        if (leftValue >= rightValue) {
+            return;
+        }
+        int midValue = (leftValue + rightValue) / 2;
+        sort(inputArray, leftValue, midValue);
+        sort(inputArray, midValue + 1, rightValue);
+        auxMerge(inputArray, leftValue, midValue, rightValue);
+    }
 
-                }
+    private void auxMerge(int[] inputArray, int leftValue, int midValue, int rightValue) {
+        int ln = midValue - leftValue + 1;
+        int rn = rightValue - midValue;
+        int[] leftArray = new int[ln];
+        int[] rightArray = new int[rn];
+        int leftCounter = 0, rightCounter = 0;
+        int counter = leftValue;
+        System.out.println(leftValue + " - " + rightValue + " - " + midValue);
+        for (; counter <= rightValue; counter++) {
+            if (leftCounter < ln) {
+                leftArray[leftCounter] = inputArray[counter];
+                leftCounter++;
+            } else if (leftCounter >= ln && rightCounter < rn) {
+                rightArray[rightCounter] = inputArray[counter];
+                rightCounter++;
             }
         }
+        leftCounter = 0;
+        rightCounter = 0;
+        counter = leftValue;
+
+        while (leftCounter < ln && rightCounter < rn) {
+            if (leftArray[leftCounter] <= rightArray[rightCounter]) {
+                inputArray[counter] = leftArray[leftCounter];
+                leftCounter++;
+            } else if (leftArray[leftCounter] >= rightArray[rightCounter]) {
+                inputArray[counter] = rightArray[rightCounter];
+                rightCounter++;
+            }
+            counter++;
+        }
+
+        while (leftCounter < ln) {
+            inputArray[counter] = leftArray[leftCounter];
+            leftCounter++;
+            counter++;
+        }
+        while (rightCounter < rn) {
+            inputArray[counter] = rightArray[rightCounter];
+            rightCounter++;
+            counter++;
+        }
+
     }
+
 
 }
